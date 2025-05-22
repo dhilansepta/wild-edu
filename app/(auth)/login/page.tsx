@@ -6,7 +6,7 @@ import AuthButton from '@/app/components/AuthButton';
 const Login = () => {
     return (
         <div className='flex flex-col justify-center items-center h-screen bg-black'>
-            <div className='py-6 px-10 bg-amber-600 rounded-md shadow-md w-80'>
+            <div className='py-6 px-10 bg-amber-600 rounded-md shadow-md w-80 text-center'>
                 <h1 className='text-3xl text-white text-center mb-6'>Login</h1>
                 {/* <form className='flex flex-col gap-4'>
                     <input
