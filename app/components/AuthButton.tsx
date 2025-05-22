@@ -13,7 +13,7 @@ const AuthButton = ({ params }: { params: "Logout" | "Login" }) => {
                 )
                 : (
                     <button
-                        className='bg-white text-black border border-gray-300 hover:bg-gray-100 rounded-md p-2 transition-colors'
+                        className='bg-white text-black border border-gray-300 hover:bg-gray-200 rounded-md p-2'
                         onClick={async () => await signIn('github', {callbackUrl: "/admin/dashboard"})}
                     >
                         Sign In with GitHub
