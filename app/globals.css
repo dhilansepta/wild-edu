@@ -51,7 +51,7 @@
   }
 
   .secodary_container {
-    @apply flex flex-col items-center justify-items-center bg-secondary gap-4;
+    @apply flex flex-col items-center justify-center gap-4 bg-secondary;
   }
 
   .accent_container {
