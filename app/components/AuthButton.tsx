@@ -7,7 +7,8 @@ const AuthButton = ({ params }: { params: "Logout" | "Login" }) => {
         <>
             {params == "Logout"
                 ? (
-                    <button onClick={async () => await signOut({callbackUrl: "/"})}>
+                    <button className='text-xl text-dark font-poppins hover:cursor-pointer hover:text-light' 
+                    onClick={async () => await signOut({callbackUrl: "/"})}>
                         <span>Logout</span>
                     </button>
                 )
