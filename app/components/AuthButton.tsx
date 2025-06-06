@@ -1,28 +1,20 @@
 'use client'
-import { signIn, signOut } from 'next-auth/react'
-import React from 'react'
+import LoginForm from "./LoginForm"
+import { signOut } from "next-auth/react"
 
-const AuthButton = ({ params }: { params: "Logout" | "Login" }) => {
+const AuthButton = ({ params }: { params: 'Logout' | 'Login' }) => {
+  if (params === 'Logout') {
     return (
-        <>
-            {params == "Logout"
-                ? (
-                    <button className='text-xl text-dark font-poppins hover:cursor-pointer hover:text-light' 
-                    onClick={async () => await signOut({callbackUrl: "/"})}>
-                        <span>Logout</span>
-                    </button>
-                )
-                : (
-                    <button
-                        className='bg-white text-black border border-gray-300 hover:bg-gray-200 rounded-md p-2'
-                        onClick={async () => await signIn('github', {callbackUrl: "/admin/dashboard"})}
-                    >
-                        Sign In with GitHub
-                    </button>
-                )
-            }
-        </>
+      <button 
+        className='text-xl text-dark font-poppins hover:cursor-pointer hover:text-light'
+        onClick={() => signOut({ callbackUrl: '/' })}
+      >
+        Logout
+      </button>
     )
+  }
+
+  return <LoginForm />
 }
 
 export default AuthButton

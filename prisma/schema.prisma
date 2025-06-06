@@ -5,40 +5,47 @@ generator client {
 }
 
 datasource db {
-    provider  = "postgresql"
-    url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-    directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model User {
-    id        String   @id @default(cuid())
+    id        String    @id @default(cuid())
     role      Role
     name      String?
-    email     String?  @unique
-    createdAt DateTime @default(now()) @map(name: "created_at")
-    updatedAt DateTime @updatedAt @map(name: "updated_at")
-    articles Article[]
+    username  String?   @unique
+    password  String
+    createdAt DateTime  @default(now()) @map(name: "created_at")
+    updatedAt DateTime  @updatedAt @map(name: "updated_at")
+    articles  Article[]
+
     @@map(name: "users")
 }
 
 model Article {
-    id String @id @default(cuid())
-    title String
-    content String
-    author User @relation(fields: [authorId], references: [id])
-    authorId String
-    categories Category[]
-    metaTitle String?
-    metaDescription String?
+    id              String     @id @default(cuid())
+    metaTitle       String
+    metaDescription String
+    title           String
+    content         String
+    author          User       @relation(fields: [authorId], references: [id])
+    authorId        String
+    categories      Category[]
 }
 
 model Category {
-    id String @id @default(cuid())
+    id       String    @id @default(cuid())
     category String
+    isAktif  isAktif
     articles Article[]
 }
 
 enum Role {
     ADMIN
     USER
+}
+
+enum isAktif {
+    Aktif
+    NonAktif
 }

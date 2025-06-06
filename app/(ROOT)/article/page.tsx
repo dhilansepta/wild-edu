@@ -1,6 +1,11 @@
 import ArticleCard from '@/app/components/ArticleCard'
 import React from 'react'
 
+
+export const metadata = {
+    title: "Articles"
+}
+
 const Article = () => {
     return (
         <>
