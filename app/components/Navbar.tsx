@@ -15,7 +15,7 @@ const Navbar = async () => {
                     <Link href="/">
                         <h1 className='text-dark font-bold text-4xl font-geist-mono'>BIOSFERA</h1>
                     </Link>
-                    <ToggleButton />
+                    <ToggleButton className='sm:hidden'/>
                 </div>
                 <div className='hidden flex-col justify-center items-center sm:flex sm:flex-row sm:gap-4' id='navbarMobile'>
                     <ButtonNav params="Home" href="/" />

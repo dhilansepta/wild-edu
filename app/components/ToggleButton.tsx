@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
-const ToggleButton = () => {
+const ToggleButton = ({className}: {className: string}) => {
 
     function toggleNavbar() {
         const nav = document.getElementById('navbarMobile');
@@ -13,7 +13,7 @@ const ToggleButton = () => {
 
     return (
         <>
-            <button onClick={toggleNavbar} className="sm:hidden">
+            <button onClick={toggleNavbar} className={className}>
                 <FontAwesomeIcon icon = {faBars}
                     className='text-2xl'
                 />

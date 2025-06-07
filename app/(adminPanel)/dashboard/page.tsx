@@ -6,7 +6,9 @@ export const metadata = {
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div>
+      <h1 className='text-primary text-2xl'>Dashboard</h1>
+    </div>
   )
 }
 

@@ -78,19 +78,6 @@ const LoginForm = () => {
           Login
         </button>
       </form>
-
-      <div className="relative flex items-center py-4">
-        <div className="flex-grow border-t border-dark"></div>
-        <span className="flex-shrink mx-4 text-dark">or</span>
-        <div className="flex-grow border-t border-dark"></div>
-      </div>
-
-      <button
-        className='bg-dark text-light rounded-xl w-auto p-4 hover:bg-accent hover:text-dark'
-        onClick={() => signIn('github', { callbackUrl: "/dashboard" })}
-      >
-        Sign In with GitHub
-      </button>
     </>
   )
 }
