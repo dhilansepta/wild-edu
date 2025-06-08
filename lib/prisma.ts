@@ -38,7 +38,6 @@ export async function verifyUserCredentials(
   const isValid = await verifyPassword(password, user.password)
   if (!isValid) return null
 
-  // Return user without password
   const { password: _, ...safeUser } = user
   return safeUser
 }

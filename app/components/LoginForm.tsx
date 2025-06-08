@@ -1,5 +1,5 @@
 'use client'
-import { signIn, signOut } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 import React, { useState } from 'react'
 
 const LoginForm = () => {
@@ -19,12 +19,18 @@ const LoginForm = () => {
         redirect: false,
         callbackUrl: '/dashboard'
       })
-
+      
       if (result?.error) {
-        setError(result.error)
+        // Handle different error cases
+        if (result.error === "CredentialsSignin") {
+          setError("Invalid Username or Password");
+        } else {
+          setError("Login failed. Please try again.");
+        }
       } else if (result?.url) {
         window.location.href = result.url
       }
+
     } catch (err) {
       setError('An unexpected error occurred')
     }
@@ -38,7 +44,7 @@ const LoginForm = () => {
             {error}
           </div>
         )}
-        
+
         <div className="flex flex-col gap-1">
           <label htmlFor="username" className="text-sm font-medium text-dark">
             Username
@@ -78,6 +84,7 @@ const LoginForm = () => {
           Login
         </button>
       </form>
+      
     </>
   )
 }

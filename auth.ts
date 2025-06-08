@@ -19,8 +19,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           // 2. Verify credentials against database
           const user = await verifyUserCredentials(username, password)
 
+          // 3. If user not found, throw error
           if (!user) {
-            throw new Error("Invalid credentials")
+            throw new Error("Invalid Username or Password")
           }
 
           // 3. Return user object in the format NextAuth expects
@@ -30,13 +31,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           }
         } catch (error) {
           if (error instanceof ZodError) {
-            // Return null for invalid credentials format
             return null
           }
-          // Return null for any other error
           return null
         }
       },
     })
   ],
+  pages: {
+    signIn: "/login",
+  },
 })

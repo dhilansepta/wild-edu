@@ -25,7 +25,7 @@ const Navbar = async () => {
                     {session && session?.user
                         ? (
                             <>
-                                <ButtonNav params="Dashboard" href="/admin/dashboard" />
+                                <ButtonNav params="Dashboard" href="/dashboard" />
 
                                 <AuthButton params="Logout" />
                             </>
