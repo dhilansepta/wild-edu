@@ -2,14 +2,16 @@
 CREATE TYPE "Role" AS ENUM ('ADMIN', 'USER');
 
 -- CreateEnum
-CREATE TYPE "isAktif" AS ENUM ('Aktif', 'NonAktif');
+CREATE TYPE "UserStatus" AS ENUM ('AKTIF', 'NON_AKTIF');
 
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "role" "Role" NOT NULL,
+    "status" "UserStatus" NOT NULL,
     "name" TEXT,
     "username" TEXT,
+    "password" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -32,7 +34,6 @@ CREATE TABLE "Article" (
 CREATE TABLE "Category" (
     "id" TEXT NOT NULL,
     "category" TEXT NOT NULL,
-    "isAktif" "isAktif" NOT NULL,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );

@@ -1,21 +1,17 @@
 'use client'
 import React from 'react'
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-const Button = ({ params }: { params: string }) => {
-  // const handleClick = (e: React.MouseEvent) => {
-  //   e.preventDefault()
-  //   router.push(href)
-  // }
-
-  const router = useRouter();
+const Button = ({ href, icon, text, className = ''}: { href: string; icon: IconProp; text: string, className?: string }) => {
   return (
-    <div>
-      <button className='!flex-row w-full text-dark accent_container rounded-xl p-2 hover:cursor-pointer hover:text-light'>
-        {params}
-        <span>→</span>
-      </button>
-    </div>
+    <>
+      <Link href={href} className="flex flex-row p-2 items-center bg-accent rounded-xl hover:bg-accent/50 transition-colors">
+        <span className={`${className} text-md`}>{text}</span>
+        <FontAwesomeIcon icon={icon} className={`${className} mx-2`}/>
+      </Link>
+    </>
   )
 }
 

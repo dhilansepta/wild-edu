@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faX, faChartLine, faPencil, faUser, faDoorOpen } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import AuthButton from './AuthButton';
 import { signOut } from 'next-auth/react';
 
 export default function Sidebar() {
@@ -32,8 +31,8 @@ export default function Sidebar() {
         <>
             {isMobile && (
                 <button
-                    className={`fixed top-4 left-4 z-50 bg-primary p-2 rounded-md text-black transition-all duration-300 ${isOpen ? 'left-64' : 'left-4'
-                        }`}
+                    className={`fixed top-4 left-4 z-50 bg-primary p-2 rounded-md text-black transition-all duration-300 
+                        ${isOpen ? 'left-64' : 'left-4'}`}
                     onClick={() => setIsOpen(!isOpen)}
                     aria-label="Toggle sidebar"
                 >
@@ -47,12 +46,13 @@ export default function Sidebar() {
 
             <aside className={`
                 ${isMobile ? 'fixed' : 'sticky'} 
-                top-0 left-0 h-screen z-40 w-64 bg-primary text-black p-4 
-                transform transition-transform duration-300 ease-in-out
+                top-0 left-0 h-screen z-40 w-78 text-center bg-primary text-black p-4 
+                transform transition-transform duration-300 ease-in-out drop-shadow-xl drop-shadow-primary
                 ${isMobile && !isOpen ? '-translate-x-full' : 'translate-x-0'}
             `}>
-                <div className="flex flex-row items-center mb-8 p-3 gap-4">
-                    <h1 className="text-2xl font-bold">CMS BIOSFERA</h1>
+                <div className="flex flex-col items-center h-20 mb-8 p-3 border-b-2 border-secondary">
+                    <h1 className="text-xl lg:text-2xl font-bold">CMS BIOSFERA</h1>
+                    <p className='md:hidden'>Username - Role</p>
                 </div>
 
                 <nav>

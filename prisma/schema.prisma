@@ -1,5 +1,3 @@
-// schema.prisma
-
 generator client {
     provider = "prisma-client-js"
 }
@@ -10,13 +8,14 @@ datasource db {
 }
 
 model User {
-    id        String    @id @default(cuid())
+    id        String     @id @default(cuid())
     role      Role
-    name      String?
-    username  String?   @unique
+    status    UserStatus
+    name      String
+    username  String?    @unique
     password  String
-    createdAt DateTime  @default(now()) @map(name: "created_at")
-    updatedAt DateTime  @updatedAt @map(name: "updated_at")
+    createdAt DateTime   @default(now()) @map(name: "created_at")
+    updatedAt DateTime   @updatedAt @map(name: "updated_at")
     articles  Article[]
 
     @@map(name: "users")
@@ -36,7 +35,6 @@ model Article {
 model Category {
     id       String    @id @default(cuid())
     category String
-    isAktif  isAktif
     articles Article[]
 }
 
@@ -45,7 +43,7 @@ enum Role {
     USER
 }
 
-enum isAktif {
-    Aktif
-    NonAktif
+enum UserStatus {
+    AKTIF
+    NON_AKTIF
 }
