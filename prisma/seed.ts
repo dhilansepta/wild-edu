@@ -1,4 +1,4 @@
-import { PrismaClient, Role } from '@prisma/client'
+import { PrismaClient, Role, UserStatus } from '@prisma/client'
 import { hash } from 'bcryptjs'
 
 const prisma = new PrismaClient()
@@ -17,18 +17,21 @@ async function main() {
       name: 'Admin',
       role: Role.ADMIN,
       password: await hash('adminbiosfera123', 12),
+      status: UserStatus.AKTIF
     },
     {
       username: 'dhilansepta',
       name: 'Dhilan Septa Yudha',
       role: Role.USER,
       password: await hash('dhilan123', 12),
+      status: UserStatus.AKTIF
     },
     {
       username: 'khairulanw',
       name: 'Khairul Anwar',
       role: Role.USER,
       password: await hash('khairulanw123', 12),
+      status: UserStatus.NON_AKTIF
     },
   ]
 
@@ -39,7 +42,8 @@ async function main() {
         username: user.username,
         name: user.name,
         role: user.role,
-        password: user.password // Make sure your User model has this field
+        password: user.password,
+        status: user.status
       }
     })
   )
