@@ -7,6 +7,7 @@ import { getAllUsers } from '@/lib/prisma'
 
  
 export default async function Page() {
+
   const rawData = await getAllUsers()
   
   const data: Users[] = rawData.map((user: any) => ({

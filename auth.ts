@@ -1,8 +1,9 @@
-import NextAuth from "next-auth"
+import NextAuth, { User } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { signInSchema } from "./lib/zod"
 import { ZodError } from "zod"
 import { verifyUserCredentials } from "./lib/prisma"
+import { DefaultSession } from "next-auth"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -11,6 +12,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         username: { label: "username", type: "text" },
         password: { label: "password", type: "password" },
       },
+
       authorize: async (credentials) => {
         try {
           // 1. Validate credentials with Zod
@@ -27,8 +29,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           // 3. Return user object in the format NextAuth expects
           return {
             id: user.id,
-            username: user.username,
-          }
+            username: user.username, // Now properly typed
+            name: user.name,
+            role: user.role,
+          } as User; // Cast to User type
         } catch (error) {
           if (error instanceof ZodError) {
             return null
@@ -41,4 +45,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
     signIn: "/login",
   },
+  callbacks: {
+  session({ session, token }) {
+    if (session.user) {
+      session.user.role = token.role;
+      session.user.name = token.name;
+    }
+    return session;
+  },
+  jwt({ token, user }) {
+    if (user) {
+      token.role = user.role;
+      token.name = user.name;
+    }
+    return token;
+  }
+}
 })

@@ -22,6 +22,8 @@ export async function findUserByUsername(username: string) {
     select: {
       id: true,
       username: true,
+      name: true,
+      role: true,
       password: true,
     }
   })
@@ -37,7 +39,12 @@ export async function verifyUserCredentials(
   const isValid = await verifyPassword(password, user.password)
   if (!isValid) return null
 
-  const { password: _, ...safeUser } = user
+  const safeUser = {
+    id: user.id,
+    username: user.username,
+    name: user.name,
+    role: user.role,
+  }
   return safeUser
 }
 
