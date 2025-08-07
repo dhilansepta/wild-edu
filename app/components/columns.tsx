@@ -13,7 +13,12 @@ export type Users = {
   status: UserStatus
 }
 
-export const columns: ColumnDef<Users>[] = [
+export type Kategori = {
+  id: string
+  category: string
+}
+
+export const userColumns: ColumnDef<Users>[] = [
   {
     accessorKey: "name",
     header: "Name",
@@ -39,6 +44,28 @@ export const columns: ColumnDef<Users>[] = [
       return (
         <Button asChild variant="secondary" size="sm">
           <Link href={`/users/${user.id}/edit`}>
+            <p className="text-white">Edit</p>
+          </Link>
+        </Button>
+      )
+    },
+  },
+]
+
+export const categoryColumns: ColumnDef<Kategori>[] = [
+  {
+    accessorKey: "category",
+    header: "Kategori",
+  },
+  {
+    id: "actions",
+    header: "Actions",
+    cell: ({ row }) => {
+      const category = row.original
+
+      return (
+        <Button asChild variant="secondary" size="sm">
+          <Link href={`/category/${category.id}/edit`}>
             <p className="text-white">Edit</p>
           </Link>
         </Button>

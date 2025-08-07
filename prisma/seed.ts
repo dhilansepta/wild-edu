@@ -4,12 +4,16 @@ import { hash } from 'bcryptjs'
 const prisma = new PrismaClient()
 
 async function main() {
-  console.log('🌱 Starting user seed...')
+  console.log('🌱 Starting database seed...')
 
   // Clear existing users
   console.log('🧹 Clearing existing users...')
   await prisma.user.deleteMany()
   console.log('✅ Existing users cleared')
+
+  console.log('🧹 Clearing existing categories...')
+  await prisma.category.deleteMany()
+  console.log('✅ Existing categories cleared')
 
   const usersData = [
     {
@@ -35,6 +39,18 @@ async function main() {
     },
   ]
 
+  const categoriesData = [
+    {
+      category: 'Reptilia'
+    },
+    {
+      category: 'Mamalia'
+    },
+    {
+      category: 'Education'
+    },
+  ]
+
   console.log(`📝 Creating ${usersData.length} users...`)
   const createUsers = usersData.map(user =>
     prisma.user.create({
@@ -48,8 +64,21 @@ async function main() {
     })
   )
 
+  console.log(`📝 Creating ${categoriesData.length} categories...`)
+  const createCategory = categoriesData.map( category =>
+    prisma.category.create({
+      data: {
+        category: category.category,
+      }
+    })
+  )
+
   await Promise.all(createUsers)
   console.log('✅ Users created successfully!')
+
+  
+  await Promise.all(createCategory)
+  console.log('✅ Categories created successfully!')
 }
 
 main()

@@ -53,6 +53,11 @@ export async function getAllUsers() {
   return users
 }
 
+export async function getAllKategori() {
+  const kategori = await prisma.category.findMany()
+  return kategori
+}
+
 export async function getUserbyId(
   params: { id: string }
 ) {
@@ -64,6 +69,8 @@ export async function getUserbyId(
 
   return user
 }
+
+//Create User
 export async function createUser(
   name: string,
   username: string,
@@ -91,6 +98,8 @@ export async function createUser(
   }
 }
 
+
+//Edit User
 export async function editUser(
   id: string,
   name: string,
@@ -132,6 +141,23 @@ export async function editUser(
     }
   } catch (error) {
     console.error('Error creating user:', error)
+    return { success: false, data: null, error }
+  }
+}
+
+//Create Category
+export async function createCategory(
+  category: string
+) {
+  try {
+    const kategori = await prisma.category.create({
+      data: {
+        category
+      }
+    })
+    return { success: true, data: kategori, error: null }
+  } catch (error) {
+    console.error('Error creating category:', error)
     return { success: false, data: null, error }
   }
 }

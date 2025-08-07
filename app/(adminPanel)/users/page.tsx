@@ -2,11 +2,11 @@ import Button from '@/app/components/Button'
 import { DataTable } from '@/components/data-table'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
-import { columns,  Users} from "./columns"
+import { userColumns, Users } from '@/app/components/columns'
 import { getAllUsers } from '@/lib/prisma'
 
  
-export default async function Page() {
+export default async function UsersPage() {
 
   const rawData = await getAllUsers()
   
@@ -26,7 +26,7 @@ export default async function Page() {
       </div>
 
       <div className='mt-4'> 
-        <DataTable columns={columns} data={data} />
+        <DataTable columns={userColumns} data={data} />
       </div>
     </div>
   )

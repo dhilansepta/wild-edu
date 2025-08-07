@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faX, faChartLine, faPencil, faUser, faDoorOpen } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faX, faChartLine, faPencil, faUser, faDoorOpen, faPenNib } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { signOut } from 'next-auth/react';
@@ -60,6 +60,7 @@ export default function Sidebar() {
                         <SidebarItem href="/dashboard" icon={faChartLine} text="Dashboard" />
                         <SidebarItem href="/managearticle" icon={faPencil} text="Article" />
                         <SidebarItem href="/users" icon={faUser} text="Users" />
+                        <SidebarItem href="/category" icon={faPenNib} text="Category" />
                         <li>
                             <Link href="/" onClick={handleLogout} className="flex items-center p-3 rounded-lg hover:bg-secondary hover:text-white transition-colors">
                                 <FontAwesomeIcon icon={faDoorOpen} className='mr-3 text-xl' />

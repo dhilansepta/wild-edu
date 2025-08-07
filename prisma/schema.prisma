@@ -34,7 +34,7 @@ model Article {
 
 model Category {
     id       String    @id @default(cuid())
-    category String
+    category String    @unique
     articles Article[]
 }
 
