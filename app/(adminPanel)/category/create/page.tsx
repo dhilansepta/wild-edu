@@ -1,7 +1,6 @@
 'use client'
 import Input from '@/app/components/Input'
 import { categorySchema } from '@/lib/schemas/category'
-import { userSchema } from '@/lib/schemas/user'
 import React, { useState } from 'react'
 
 const CreateCategory = () => {

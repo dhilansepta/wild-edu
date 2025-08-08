@@ -145,6 +145,18 @@ export async function editUser(
   }
 }
 
+export async function getCategoribyId(
+  params: { id: string }
+) {
+  const kategori = await prisma.category.findUnique({
+    where: {
+      id: params.id,
+    },
+  })
+
+  return kategori
+}
+
 //Create Category
 export async function createCategory(
   category: string
@@ -158,6 +170,27 @@ export async function createCategory(
     return { success: true, data: kategori, error: null }
   } catch (error) {
     console.error('Error creating category:', error)
+    return { success: false, data: null, error }
+  }
+}
+
+//Edit Category
+export async function editCategory(
+  id: string,
+  category: string,
+) {
+  try {
+    const kategori = await prisma.category.update({
+        where: {
+          id
+        },
+        data: {
+          category,
+        }
+      })
+      return { success: true, data: kategori, error: null }
+  } catch (error) {
+    console.error('Error creating user:', error)
     return { success: false, data: null, error }
   }
 }
